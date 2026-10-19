@@ -23,6 +23,8 @@ async function init(){
 try{config={...defaults,...await load()}}catch(e){console.error('Không thể đọc bản lưu',e)}
 if(config.planetColor==='#ed719d')config.planetColor='#ff2145';
 config.photos=Array.from({length:10},(_,i)=>config.photos?.[i]||'');
+if(!Array.isArray(config.bouquetPhotos)){config.bouquetPhotos=config.photos.slice(0,6);if(config.bouquetImage&&!config.bouquetPhotos.some(Boolean))config.bouquetPhotos[0]=config.bouquetImage;}
+config.bouquetPhotos=Array.from({length:6},(_,i)=>config.bouquetPhotos[i]||'');
 config.captions=Array.from({length:10},(_,i)=>config.captions?.[i]||'');
 config.wishes=Array.isArray(config.wishes)?config.wishes.slice(0,20):defaults.wishes;
 document.documentElement.style.setProperty('--gift-text',config.textColor);
@@ -61,7 +63,7 @@ function placeholder(i){
 }
 function setupGiftStages(play) {
   const cover=document.querySelector('.cover');
-  const bouquetSource=config.bouquetImage||defaultBouquet;
+  const bouquetSource=defaultBouquet;
   cover.classList.add('flower-cover');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const syncStage=()=>{document.body.classList.toggle('gift-open',cover.hidden);document.querySelector('.quiet-controls').inert=!cover.hidden;$('open-letter').inert=!cover.hidden;};
@@ -69,7 +71,7 @@ function setupGiftStages(play) {
   const ambient=document.createElement('div');ambient.className='gold-sparks ambient-stars';ambient.setAttribute('aria-hidden','true');ambient.innerHTML=sparks;app.prepend(ambient);
   const butterflies=config.butterflies?Array.from({length:4},(_,i)=>`<span class="butterfly" style="--x:${18+i*21}%;--y:${33+(i%2)*25}%;--delay:-${i*1.7}s" aria-hidden="true"></span>`).join(''):'';
   const photoPositions=[[17,17,-9],[38,10,0],[59,19,8],[15,35,-12],[38,36,0],[61,36,12]];
-  const photoCollage=config.photoBouquet?config.photos.slice(0,6).map((p,i)=>p||placeholder(i)).map((p,i)=>`<img src="${p}" alt="" style="--x:${photoPositions[i][0]}%;--y:${photoPositions[i][1]}%;--r:${photoPositions[i][2]}deg;--fly-x:${(i%3-1)*190}px;--fly-y:${i<3?-220:140}px;--photo-delay:${i*.1}s">`).join(''):'';
+  const photoCollage=config.photoBouquet?config.bouquetPhotos.map((p,i)=>p||placeholder(i)).map((p,i)=>`<img src="${p}" alt="" style="--x:${photoPositions[i][0]}%;--y:${photoPositions[i][1]}%;--r:${photoPositions[i][2]}deg;--fly-x:${(i%3-1)*190}px;--fly-y:${i<3?-220:140}px;--photo-delay:${i*.1}s">`).join(''):'';
   cover.innerHTML=`<div class="gold-sparks" aria-hidden="true">${sparks}</div><div class="flower-intro"><div class="micro" id="cover-label"></div><h2 id="cover-title"></h2><button id="enter" class="bouquet-enter" aria-label="Chạm vào bó hoa để hiện ảnh">${bouquetSource?`<img class="bouquet-art" src="${bouquetSource}" alt="Bó hoa dành cho em">`:flowerSVG().replace('<svg ','<svg class="bouquet-art" ')}<span class="bouquet-photos">${photoCollage}</span><img class="bouquet-wrap" src="${bouquetSource}" alt="" aria-hidden="true">${butterflies}</button><p id="bouquet-greeting"></p><span class="bouquet-touch">Chạm vào bó hoa</span></div>`;
   cover.querySelector('.bouquet-touch').textContent=config.touchText;
   $('cover-label').textContent=config.coverLabel;

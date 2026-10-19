@@ -16,7 +16,7 @@ Có nút bật/tắt nhạc, tạm dừng chuyển động, album dùng bằng b
 
 Mở `/config.html` để:
 
-- Thay ảnh bó hoa và bộ 10 ảnh kỷ niệm; sửa chú thích, xóa hoặc đổi thứ tự ảnh.
+- Tải 6 ảnh trên bó hoa và 10 ảnh ngân hà độc lập; thay, xóa hoặc đổi thứ tự từng ảnh. Bó hoa hồng luôn dùng hình mặc định.
 - Sửa hướng dẫn chạm hoa, dòng ngày, tiêu đề, chữ ở trái tim và các lời nhắn.
 - Viết người nhận, nội dung thư, chữ ký và chọn ảnh riêng trong thư.
 - Tải nhạc nền, nghe thử, chỉnh âm lượng hoặc xóa nhạc.
@@ -65,9 +65,9 @@ Mở địa chỉ Vite in ra, thường là:
 ## Ảnh, nhạc và giới hạn
 
 - Tối đa 10 ảnh kỷ niệm; mỗi ảnh tối đa 20 MB. Ảnh kỷ niệm được cắt giữa theo khung dọc 720 × 912 và nén JPEG.
-- Chọn đúng 10 ảnh để thay cả bộ; chọn ít hơn để lấp các ô trống. Có thể thay từng ô. Sáu ô đầu được dùng trong bó hoa.
+- Chọn đúng 10 ảnh để thay cả bộ; chọn ít hơn để lấp các ô trống. Có thể thay từng ô. Bộ ảnh ngân hà độc lập với ảnh trên bó hoa.
 - Ô chưa tải ảnh dùng hình minh họa phong cảnh. Để có chân dung giống hình mẫu, cần thay bằng ảnh cá nhân phù hợp; ứng dụng không tự tách nền chân dung.
-- Ảnh bó hoa hỗ trợ PNG, JPG, WebP; PNG trong suốt giữ được nền sao phía sau.
+- Mục **Ảnh trên bó hoa** nhận tối đa 6 ảnh PNG, JPG, WebP, 20 MB/ảnh. Chọn đúng 6 ảnh để thay cả bộ hoặc chọn ít hơn để lấp ô trống; ảnh chỉ hiện khi chạm bó hoa. Hình bó hoa mặc định không bị thay thế.
 - Nhạc tối đa 15 MB; khả năng phát phụ thuộc định dạng được trình duyệt hỗ trợ. Nhạc bắt đầu sau thao tác chạm của người nhận.
 - Tối đa 20 lời nhắn, 80 ký tự mỗi câu; thư tối đa 5.000 ký tự.
 - Ảnh trong thư dùng ảnh riêng nếu có, nếu không dùng ảnh đầu tiên đã tải trong bộ ảnh.
