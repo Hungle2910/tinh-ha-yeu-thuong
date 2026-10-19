@@ -1,0 +1,11 @@
+import { build } from 'vite';
+import { mkdir, writeFile } from 'node:fs/promises';
+const result=await build({configFile:false,build:{write:false,minify:true,lib:{entry:'src/main.js',name:'Gift',formats:['iife']}}});
+const outputs=(Array.isArray(result)?result:[result]).flatMap(r=>r.output);
+const js=outputs.filter(o=>o.type==='chunk').map(o=>o.code).join('\n');
+const css=outputs.filter(o=>o.type==='asset'&&o.fileName.endsWith('.css')).map(o=>o.source).join('\n');
+await mkdir('public',{recursive:true});
+const template=`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Một tinh hà dành cho em</title><style>${css}</style></head><body><div id="app"></div><!--GIFT_DATA--><script>${js.replace(/<\/script/gi,'<\\/script')}</script></body></html>`;
+await writeFile('public/gift-template.html',template);
+await writeFile('tinh-ha.html',template.replace('<!--GIFT_DATA-->','<script id="gift-data" type="application/json">{}</script>'));
+console.log('Standalone gift template ready.');

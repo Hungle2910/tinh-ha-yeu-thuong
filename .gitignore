@@ -1,0 +1,21 @@
+# Dependencies and generated builds
+node_modules/
+dist/
+public/gift-template.html
+tinh-ha.html
+
+# Local reference material and verification screenshots
+reference-frames/
+reference*.html
+preview*.png
+*.mp4
+
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+.DS_Store
+Thumbs.db

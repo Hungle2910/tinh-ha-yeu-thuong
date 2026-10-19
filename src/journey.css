@@ -1,0 +1,146 @@
+/* Shared choreography for the bouquet, orbit and opening letter. */
+body:not(.studio){background:radial-gradient(ellipse at 50% 48%,#190e1b 0,#08070e 36%,#020306 76%)}
+canvas#galaxy{touch-action:none}
+.gift-open .heading{transition:opacity 2s 1s}
+.heading h1,.flower-cover #cover-title{color:var(--gift-text)}
+.heading{top:9%}
+.heading h1{font-size:calc(clamp(28px,3vw,42px) * var(--text-scale,1));font-weight:400}
+.heart-inscription{top:53%;font-size:calc(17px * var(--text-scale,1));color:var(--gift-text)}
+.gift-open .heart-inscription{transition:opacity 2s 1.5s}
+.heading .galaxy-wish{color:var(--gift-text);opacity:.75;bottom:8%;font-size:calc(19px * var(--text-scale,1))}
+.gift-open .letter-comet{transition:opacity 2.8s 4s,filter .4s}
+.letter-comet{left:18%;top:78%;width:68px;height:58px}
+.flower-cover .flower-intro{width:min(600px,94vw);display:flex;flex-direction:column;align-items:center}
+.flower-cover #cover-title{font-style:italic;max-width:90%;font-size:clamp(27px,3vw,39px);margin:0 0 16px;line-height:1.25}
+.flower-cover .bouquet-enter{isolation:isolate}
+.flower-cover .bouquet-enter:before{content:'';position:absolute;inset:12% 4% 3%;border-radius:50%;background:radial-gradient(ellipse,#edb6cb12,transparent 68%);z-index:-1;filter:blur(20px)}
+.flower-cover .bouquet-enter>.bouquet-art{height:min(510px,66dvh);width:min(400px,82vw)}
+.flower-cover .bouquet-photos img{border:3px solid #fff4ed;border-bottom-width:9px;box-shadow:0 6px 15px #0005}
+.flower-cover.leaving{transform:scale(1.8);filter:blur(8px);transition:transform 1.3s cubic-bezier(.45,0,.2,1),opacity 1.2s,filter 1.3s}
+.flower-cover.leaving .bouquet-photos img{translate:0 -40px;transition:translate 1.1s}
+.quiet-controls .icon-button{min-width:44px;min-height:44px}
+.letter-journey{padding:0;width:min(540px,88vw);max-width:none;max-height:85dvh;overflow:visible;background:transparent;border:0;box-shadow:none;color:#644552;transition:width .7s}
+.letter-journey::backdrop{background:#08050ab0;backdrop-filter:blur(7px);animation:scene-dim .65s both}
+.letter-journey[open]{animation:envelope-arrival .8s cubic-bezier(.2,.75,.2,1) both}
+.letter-journey .envelope-scene{padding:0 25px;perspective:1400px}
+.letter-journey .envelope{height:270px;background:#e6bbc8;border-color:#edc4d2;box-shadow:0 30px 100px #0009,0 0 70px #e8a6ca18}
+.letter-journey .envelope-label{font-size:clamp(20px,3vw,27px)}
+.letter-journey .envelope:after{content:'❧';position:absolute;bottom:12px;right:20px;font:42px Georgia;color:#ae6c85;z-index:3;opacity:.6}
+.envelope-paper{position:absolute;inset:12px 16px 5px;background:#fff6ee;border:1px solid #f7e5e1;display:grid;place-items:center;color:#bd7c94;font:44px var(--gift-font);transition:transform .8s .22s;z-index:1}
+.letter-journey.envelope-opening .envelope{animation:none;transition:transform .8s .3s,opacity .5s .7s;transform:translateY(65px)}
+.letter-journey.envelope-opening .envelope-paper{transform:translateY(-100px)}
+.letter-journey.envelope-opening .envelope-flap{z-index:0}
+.letter-journey>.close{right:0;top:-48px;min-width:44px;min-height:44px;color:#f4d9e6;z-index:8}
+.letter-journey .letter{position:relative;background:linear-gradient(135deg,#fffaf2,#fcebf0);padding:55px 44px 40px;max-height:82dvh;overflow:auto;overscroll-behavior:contain;border:1px solid #efc9d7;border-radius:5px;box-shadow:0 20px 100px #0006;scrollbar-width:thin;scrollbar-color:#dbb2c2 transparent}
+.letter-journey .letter:before{content:'❧';display:block;text-align:center;color:#b37d8b;font:42px/1 Georgia;margin-bottom:20px}
+.letter-journey .letter h2{font-size:clamp(26px,3vw,34px);color:#884c69;margin:0 0 22px;font-weight:500}
+.letter-journey .letter p{font-size:calc(22px * var(--text-scale,1));line-height:1.85;color:#684c58;white-space:pre-wrap;overflow-wrap:anywhere}
+.letter-journey .letter .signature{color:#ab6884;font-style:italic;text-align:right;margin-top:30px}
+.letter-journey.letter-unfolded .envelope-scene{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s}
+.letter-journey.letter-unfolded .letter{animation:letter-unfold 1s cubic-bezier(.2,.75,.2,1) both}
+.letter-journey.letter-unfolded .envelope{visibility:hidden}
+.photo-dialog{max-width:min(440px,88vw);padding:9px;border-color:#ecc3d45c;border-radius:3px;background:#fbf0ec}
+.photo-dialog img{max-height:70dvh;width:auto;max-width:100%;display:block;margin:auto;border-radius:0}
+.photo-dialog p{font:italic 20px var(--gift-font);color:#88576c;text-align:center;margin:14px 8px 6px}
+.photo-dialog>.close{background:#291923c9;color:#fff;min-width:40px;min-height:40px;z-index:2}
+.studio-layout{max-width:1260px;grid-template-columns:minmax(0,1fr) 350px;gap:44px}
+.editor-intro{margin-bottom:28px}
+.editor-intro .micro{display:none}
+.studio h1{font-family:var(--gift-font);font-size:38px;font-weight:600;letter-spacing:-.6px}
+.preview-column{margin-top:105px;padding-top:0;position:sticky;top:25px}
+.studio-layout:has(.settings:focus-within) .preview-column{top:25px}
+.preview-column iframe{height:clamp(420px,calc(100dvh - 190px),630px)}
+.settings{border-radius:20px;padding:5px 30px 26px;box-shadow:0 12px 70px #97567506}
+.settings section{padding:30px 0}
+.drop-zone{min-height:155px}
+@keyframes scene-dim{from{background:#08050a00;backdrop-filter:blur(0)}to{background:#08050ab0;backdrop-filter:blur(7px)}}
+@keyframes envelope-arrival{from{opacity:0;transform:translate(-15vw,18vh) rotate(-12deg) scale(.25)}to{opacity:1;transform:none}}
+@keyframes letter-unfold{from{opacity:0;transform:translateY(60px) scale(.78)}to{opacity:1;transform:none}}
+@media(max-width:900px){.studio-layout{grid-template-columns:minmax(0,1fr) 300px;gap:24px}.studio h1{font-size:30px}.settings{padding:4px 20px 24px}}
+@media(max-width:680px){
+ .heading{top:10%}.heading h1{font-size:calc(28px * var(--text-scale,1));max-width:94%}
+ .heading .galaxy-wish{bottom:10%;left:12%;right:12%;font-size:calc(17px * var(--text-scale,1))}
+ .heart-inscription{left:24%;right:24%;font-size:calc(14px * var(--text-scale,1));top:52%}
+ .letter-comet{left:14%;top:78%;width:60px;height:51px}
+ .flower-cover #cover-title{font-size:28px;margin-bottom:15px}
+ .flower-cover .bouquet-enter>.bouquet-art{height:59dvh;width:82vw}
+ .letter-journey{width:88vw}.letter-journey .envelope-scene{padding:0 4px}.letter-journey .envelope{height:205px}
+ .letter-journey .letter{padding:30px 25px}.letter-journey .letter p{font-size:calc(19px * var(--text-scale,1))}
+ .letter-journey .letter:before{margin-bottom:16px;font-size:34px}
+ .studio-layout{display:flex;flex-direction:column}.preview-column{position:static;margin:0 auto;max-width:360px;width:100%}.preview-column iframe{height:580px}
+}
+@media(prefers-reduced-motion:reduce){.letter-journey[open],.letter-journey::backdrop,.letter-journey.letter-unfolded .letter{animation:none}.envelope-paper,.letter-journey.envelope-opening .envelope,.gift-open .heading,.gift-open .heart-inscription,.gift-open .letter-comet,.flower-cover.leaving{transition:none}.flower-cover.leaving{transform:none;filter:none}}
+
+/* The entry always starts with the bouquet; the letter follows a projected 3D orbit. */
+.bouquet-touch{font:12px Nunito,sans-serif;color:#e9c6d4;letter-spacing:.5px;margin-top:12px;animation:comet-sparkle 3s ease-in-out infinite}
+.flower-cover .bouquet-photos img{width:22%!important;height:25%!important;object-fit:cover;border-bottom-width:7px;animation:photo-bloom 1.5s both}
+.flower-cover.leaving .bouquet-photos img{translate:calc((var(--x) - 40%) * 3) -90px;scale:1.5;opacity:0;transition:translate 1.2s,scale 1.2s,opacity 1s .2s}
+.orbital-ribbon{position:fixed;inset:0;width:100%;height:100dvh;pointer-events:none;z-index:2;filter:drop-shadow(0 0 6px #ff329c) drop-shadow(0 0 14px #ed399a90)}
+.letter-comet.orbital-letter{animation:none;transform:translate(-50%,-50%);width:64px;height:55px;z-index:3;transition:opacity 1s,filter .3s}
+.orbital-letter .comet-tail{display:none}.orbital-letter svg{transform:rotate(-12deg)}
+.gift-open .orbital-letter{transition:opacity 1s,filter .3s}
+@keyframes photo-bloom{from{opacity:0;scale:.65;translate:0 35px}to{opacity:1;scale:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){.bouquet-touch,.flower-cover .bouquet-photos img{animation:none}}
+
+/* Opening composition matched to reference clip 1. */
+.cover.flower-cover{background:#000;overflow:hidden}
+.flower-cover:before,.flower-cover #cover-title,.flower-cover .bouquet-touch{display:none}
+.flower-cover .flower-intro{width:min(430px,86vw);animation:bouquet-arrival 2s cubic-bezier(.18,.7,.2,1) both}
+.flower-cover .bouquet-enter{width:min(370px,78vw);height:min(440px,56dvh);animation:bouquet-float 7s ease-in-out infinite}
+.flower-cover .bouquet-enter>.bouquet-art{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 24px #e995bb20)}
+.flower-cover .bouquet-enter>.bouquet-wrap{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;clip-path:polygon(0 56%,22% 52%,38% 60%,51% 65%,66% 57%,83% 53%,100% 58%,100% 100%,0 100%);z-index:3;pointer-events:none;filter:none}
+.flower-cover .bouquet-photos{inset:0;z-index:2}
+.flower-cover .bouquet-photos img{width:29%!important;height:30%!important;border:0!important;border-radius:42% 42% 12% 12%;box-shadow:none;object-fit:cover;filter:none;mask-image:linear-gradient(to bottom,#000 0%,#000 65%,transparent 100%);animation:portrait-arrival 1.5s both;animation-delay:var(--photo-delay)}
+.flower-cover .butterfly{z-index:4;width:25px;height:23px;filter:drop-shadow(0 0 3px #f5b2c950)}
+.flower-cover .butterfly:nth-last-child(1){left:85%;top:22%}.flower-cover .butterfly:nth-last-child(2){left:5%;top:16%}.flower-cover .butterfly:nth-last-child(3){left:78%;top:43%}.flower-cover .butterfly:nth-last-child(4){left:12%;top:48%}
+.flower-cover .butterfly:before,.flower-cover .butterfly:after{background:radial-gradient(ellipse at 30% 25%,#fff8ed,#f0b9c6 50%,#ce7898);width:12px;height:19px}
+.flower-cover .gold-sparks{opacity:1}
+.flower-cover .gold-sparks i{background:#fff9d8;box-shadow:0 0 5px 1px #fff4bb70;animation:gold-twinkle var(--d) ease-in-out infinite alternate,opening-star-drift 18s ease-in-out infinite;animation-delay:var(--delay)}
+.flower-cover .gold-sparks i:nth-child(11n){box-shadow:0 0 7px 3px #fff2bd90,0 0 22px 10px #e6cf8038}
+.flower-cover .gold-sparks i:nth-child(4n){background:#fff;box-shadow:0 0 8px 2px #fff8d080}
+.flower-cover.leaving{transform:none;filter:none;transition:opacity 1.2s .05s}
+.flower-cover.leaving .bouquet-enter{animation:none}
+.flower-cover.leaving .bouquet-art,.flower-cover.leaving .bouquet-wrap{opacity:0;scale:1.25;filter:blur(5px);transition:opacity .9s,scale 1.2s,filter 1s}
+.flower-cover.leaving .bouquet-photos img{translate:var(--fly-x) var(--fly-y);scale:2.2;opacity:0;transition:translate 1.25s cubic-bezier(.4,0,.2,1),scale 1.2s,opacity 1.1s .15s}
+.flower-cover.leaving .gold-sparks{scale:1.65;opacity:0;transition:scale 1.3s,opacity 1.3s}
+@keyframes bouquet-arrival{from{opacity:0;transform:scale(.78) translateY(15px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes portrait-arrival{from{opacity:0;translate:0 20px}to{opacity:1;translate:0 0}}
+@keyframes opening-star-drift{0%,100%{translate:0 0}50%{translate:3px -12px}}
+@media(max-width:680px){.flower-cover .bouquet-enter{width:min(330px,86vw);height:min(420px,56dvh)}}
+@media(prefers-reduced-motion:reduce){.flower-cover .flower-intro,.flower-cover .bouquet-photos img,.flower-cover .gold-sparks i{animation:none}.flower-cover.leaving *{transition:none!important}}
+
+.flower-cover .bouquet-photos img{width:25%!important;height:28%!important;border-radius:15% 15% 0 0;mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,#000d 55%,transparent 77%)}
+
+/* First touch blooms the photographs; the second touch starts the galaxy. */
+.flower-cover .bouquet-touch{display:block;margin-top:20px;font-size:11px;animation:none;opacity:.8}
+.flower-cover .bouquet-photos img{animation:none;opacity:0;scale:.05;translate:0 46px;transform-origin:50% 85%;filter:blur(5px);transition:none}
+.flower-cover.photos-revealed .bouquet-photos img{opacity:1;scale:1;translate:0 0;filter:blur(0);transition:opacity 1s var(--photo-delay),scale 1.45s cubic-bezier(.18,.75,.25,1) var(--photo-delay),translate 1.45s cubic-bezier(.18,.75,.25,1) var(--photo-delay),filter 1.1s var(--photo-delay)}
+.flower-cover.photos-revealed.leaving .bouquet-photos img{translate:var(--fly-x) var(--fly-y);scale:2.2;opacity:0;transition:translate 1.25s,scale 1.2s,opacity 1s}
+.flower-cover .gold-sparks i{animation:reference-twinkle var(--d) ease-in-out infinite alternate,opening-star-drift 22s ease-in-out infinite;animation-delay:var(--delay)}
+.flower-cover .gold-sparks i:nth-child(7n){width:4px;height:4px;background:#fffef0;box-shadow:0 0 6px 2px #fff9cfaa,0 0 19px 9px #f1d49a35}
+.flower-cover .gold-sparks i:nth-child(11n){width:5px;height:5px;box-shadow:0 0 7px 3px #fff7caaa,0 0 25px 13px #efdf9c30}
+.flower-cover .gold-sparks i:nth-child(13n){background:#fff;box-shadow:0 0 6px 2px #fff9,0 0 20px 8px #ffffff20}
+@keyframes reference-twinkle{0%{opacity:.18;transform:scale(.65)}45%{opacity:.55}100%{opacity:1;transform:scale(1.18)}}
+@media(prefers-reduced-motion:reduce){.flower-cover .gold-sparks i{animation:none;opacity:.65}.flower-cover.photos-revealed .bouquet-photos img{transition:none}}
+
+/* Pastel gift studio, with separate typography controls for each scene. */
+body.studio{background:radial-gradient(ellipse at 90% 18%,#f9edf3,transparent 50%),#fffafb}
+.studio-header{max-width:1240px;padding:17px 30px;border-bottom:1px solid #f5dce7}
+.studio-layout{max-width:1180px;grid-template-columns:minmax(0,720px) 320px;gap:32px;padding:36px 30px 70px}
+.studio h1{font:700 30px/1.4 Nunito,sans-serif;letter-spacing:-.8px;margin:4px 0 12px}
+.settings{border-radius:14px;border-color:#f6cddd;box-shadow:none;padding:0 25px 24px}
+.settings section{padding:25px 0}.settings h2{font-size:17px}
+.preview-column{margin-top:92px;top:22px}.studio-layout:has(.settings:focus-within) .preview-column{top:22px}
+.preview-column iframe{height:clamp(390px,calc(100dvh - 250px),570px)}
+.phone-frame{border-radius:28px;border-width:5px;margin:0 7px;box-shadow:0 18px 45px #78455c18}
+.drop-zone{background:#fff7fa;border-color:#f4b5ce;min-height:150px}.drop-zone.compact{min-height:92px}
+.field-note{color:#987684;font:11px/1.7 Nunito,sans-serif;margin:14px 0 0}
+.size-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+.auto-preview{display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px!important;color:#92677c!important;font-weight:400!important;margin:16px 0 2px!important}.auto-preview input{accent-color:#e85e8f;width:14px;height:14px}
+.preview-footer{margin-top:2px}.settings input:focus-visible,.settings textarea:focus-visible,.settings select:focus-visible{outline:2px solid #e887ac;outline-offset:2px}
+.heading h1{font-size:calc(clamp(28px,3vw,42px) * var(--text-scale,1) * var(--titleScale,1))}
+.heart-inscription{font-size:calc(17px * var(--text-scale,1) * var(--heartScale,1))}
+.heading .galaxy-wish{font-size:calc(19px * var(--text-scale,1) * var(--wishScale,1))}
+.letter-journey .letter p{font-size:calc(22px * var(--text-scale,1) * var(--letterScale,1))}
+@media(max-width:900px){.studio-layout{grid-template-columns:minmax(0,1fr) 280px;padding:28px 20px;gap:20px}.studio h1{font-size:25px}.settings{padding:0 20px 20px}}
+@media(max-width:680px){.studio-layout{display:flex;padding:25px 16px}.preview-column{position:static;margin:0 auto;max-width:360px;width:100%}.preview-column iframe{height:580px}.studio-header{padding:16px 20px}.size-grid{grid-template-columns:1fr}.heading h1{font-size:calc(28px * var(--text-scale,1) * var(--titleScale,1))}.heart-inscription{font-size:calc(14px * var(--text-scale,1) * var(--heartScale,1))}.heading .galaxy-wish{font-size:calc(17px * var(--text-scale,1) * var(--wishScale,1))}.letter-journey .letter p{font-size:calc(19px * var(--text-scale,1) * var(--letterScale,1))}}
