@@ -45,7 +45,7 @@ npm run build:gift
 npm run dev
 ```
 
-Repo riêng tư yêu cầu tài khoản GitHub được cấp quyền khi clone. Mở địa chỉ Vite in ra, thường là:
+Mở địa chỉ Vite in ra, thường là:
 
 - Món quà: `http://127.0.0.1:5173/index.html`
 - Trang chỉnh sửa: `http://127.0.0.1:5173/config.html`
@@ -132,3 +132,12 @@ Build có thể cảnh báo bundle lớn vì bó hoa được nhúng cùng mã �
 ## Artwork
 
 Bó hoa mặc định được tạo bằng imagegen; thông tin nguồn nằm trong [`src/assets/ASSETS.md`](src/assets/ASSETS.md). Giao diện được dựng theo tham khảo và tùy chỉnh riêng; không chứa ảnh chân dung cá nhân từ clip mẫu.
+
+## Website trên GitHub Pages
+
+- Món quà: https://hungle2910.github.io/tinh-ha-yeu-thuong/
+- Cấu hình: https://hungle2910.github.io/tinh-ha-yeu-thuong/config.html
+
+Repo được chuyển sang public theo yêu cầu của chủ dự án để sử dụng GitHub Pages. Workflow `.github/workflows/pages.yml` tự build và triển khai mỗi lần push nhánh `main`; có thể chạy thủ công trong tab Actions. Vite dùng đường dẫn tài nguyên tương đối để hoạt động dưới đường dẫn repo.
+
+Đây là bản website tĩnh. Dữ liệu chỉnh sửa vẫn ở trình duyệt của từng người, không được tự động xuất bản lên GitHub hay chia sẻ qua link trang chủ. Sau khi cá nhân hóa, tải HTML và gửi tệp cho người nhận; muốn có link riêng có thể commit tệp đã xuất vào `public/gifts/ten-mon-qua.html` rồi push (nội dung tệp đó sẽ công khai). Không đặt token GitHub hay mật khẩu trong trang cấu hình.

@@ -1,15 +1,17 @@
 import { createPlanet } from './planet.js';
+import letterBotanicals from './assets/letter-botanicals.svg?inline';
 import defaultBouquet from './assets/rose-bouquet.png?inline';
 import './style.css';
 import './studio.css';
 import './experience.css';
 import './romance.css';
 import './journey.css';
+import './studio-reference.css';
 import { renderEditor } from './editor.js';
 
 const defaults={title:'Em là cả một tinh hà',subtitle:'Giữa hàng triệu vì sao, anh vẫn chọn em.',recipient:'Gửi em, người anh thương',letter:'Có những điều anh không giỏi nói thành lời, nên anh gửi chúng vào những vì sao.\n\nCảm ơn em đã đến, đã làm những ngày bình thường trở nên thật đặc biệt. Mong em luôn được yêu thương, luôn mỉm cười và luôn là chính mình.\n\nChúc em một ngày 20/10 thật dịu dàng. Cả tinh hà này, dành riêng cho em.',sender:'Thương em, thật nhiều ♡',font:'Cormorant Garamond',color:'#e9a7c5',speed:0.35,density:6500,twinkle:true,music:'',photos:Array(10).fill('')};
 Object.assign(defaults,{coverLabel:'MỘT MÓN QUÀ NHỎ · DÀNH RIÊNG CHO EM',coverTitle:'Có một vũ trụ đang chờ em.',bouquetTitle:'Một bó yêu thương',bouquetNote:'Vì em xứng đáng với những điều dịu dàng nhất.',bouquetImage:'',captions:Array(10).fill(''),wishes:['Chúc em luôn mỉm cười','Cảm ơn em đã đến bên anh','Em là vì sao đặc biệt nhất'],galaxyEnabled:true,letterEnabled:true,showWishes:true,shootingStars:true,autoRotate:true,textColor:'#fff0f5',textScale:100,volume:.6,musicName:'',planetText:'You & me',planetColor:'#ff2145',orbitGlow:true,butterflies:true,photoBouquet:true});
-Object.assign(defaults,{occasionLabel:'20 · 10',touchText:'Chạm vào bó hoa',nextText:'Chạm thêm lần nữa để vào ngân hà',titleScale:100,heartScale:100,wishScale:100,letterScale:100,letterImage:''});
+Object.assign(defaults,{occasionLabel:'20 · 10',touchText:'Chạm vào bó hoa',nextText:'Chạm thêm lần nữa để vào ngân hà',titleScale:100,heartScale:100,wishScale:100,letterScale:100,letterImage:'',envelopeTitle:'Dành tặng em',envelopeCaption:'Một chút yêu thương'});
 const fontMap={'Cormorant Garamond':"'Cormorant Garamond',serif",'Playfair Display':"'Playfair Display',serif",Nunito:'Nunito,sans-serif'};
 const embedded=document.querySelector('#gift-data');
 let db;
@@ -78,14 +80,18 @@ function setupGiftStages(play) {
   flower.querySelector('p').textContent=config.bouquetNote;
   if(bouquetSource){const image=new Image();image.src=bouquetSource;image.alt='Bó hoa dành cho em';flower.querySelector('svg').replaceWith(image);}
   const envelope=document.createElement('dialog');envelope.className='envelope-dialog letter-journey';envelope.innerHTML='<button class="close" aria-label="Đóng phong bì">×</button><div class="envelope-scene"><button class="envelope" aria-label="Mở phong bì"><span class="envelope-paper" aria-hidden="true">♡</span><span class="envelope-flap"></span><span class="envelope-seal">♡</span><span class="envelope-label"></span></button></div>';app.append(envelope);
-  envelope.querySelector('.envelope-label').textContent=config.recipient;
+  envelope.querySelector('.envelope-label').textContent=config.envelopeTitle;
+  const date=document.createElement('span');date.className='envelope-date';date.textContent=config.occasionLabel;envelope.querySelector('.envelope').append(date);
+  const caption=document.createElement('span');caption.className='envelope-caption';caption.textContent=config.envelopeCaption;envelope.querySelector('.envelope').append(caption);
+  function decorate(element){for(const corner of ['one','two']){const ornament=new Image();ornament.src=letterBotanicals;ornament.className='letter-floral floral-'+corner;ornament.alt='';ornament.setAttribute('aria-hidden','true');element.append(ornament);}}
+  decorate(envelope.querySelector('.envelope'));
   let envelopeTimer,enterTimer;
   const resetEnvelope=()=>{clearTimeout(envelopeTimer);envelope.classList.remove('envelope-opening','letter-unfolded');envelope.querySelector('.envelope').disabled=false;envelope.querySelector('.letter').hidden=true;};
   envelope.querySelector('.close').onclick=()=>envelope.close();envelope.addEventListener('close',resetEnvelope);
   const openEnvelope=()=>{resetEnvelope();envelope.querySelector('.close').setAttribute('aria-label','Đóng phong bì');envelope.showModal();};
   $('open-letter').onclick=openEnvelope;
-  const paper=$('letter-dialog').querySelector('.letter');paper.hidden=true;envelope.append(paper);$('letter-dialog').remove();
-  const portrait=config.letterImage||config.photos.find(Boolean);if(portrait){const img=new Image();img.className='letter-portrait';img.src=portrait;img.alt='Một kỷ niệm của chúng mình';$('letter-text').before(img);}
+  const paper=$('letter-dialog').querySelector('.letter');paper.hidden=true;envelope.append(paper);decorate(paper);$('letter-dialog').remove();
+  const portrait=config.letterImage||config.photos.find(Boolean);if(portrait){const img=new Image();img.className='letter-portrait';img.src=portrait;img.alt='Một kỷ niệm của chúng mình';$('sender').before(img);}
   envelope.querySelector('.envelope').onclick=()=>{envelope.classList.add('envelope-opening');envelope.querySelector('.envelope').disabled=true;envelopeTimer=setTimeout(()=>{paper.hidden=false;envelope.classList.add('letter-unfolded');envelope.querySelector('.close').setAttribute('aria-label','Đóng lá thư');envelope.querySelector('.close').focus({preventScroll:true});},reduced?0:750);};
   let bloomReadyAt=0;
   const enter=()=>{

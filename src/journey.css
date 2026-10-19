@@ -144,3 +144,40 @@ body.studio{background:radial-gradient(ellipse at 90% 18%,#f9edf3,transparent 50
 .letter-journey .letter p{font-size:calc(22px * var(--text-scale,1) * var(--letterScale,1))}
 @media(max-width:900px){.studio-layout{grid-template-columns:minmax(0,1fr) 280px;padding:28px 20px;gap:20px}.studio h1{font-size:25px}.settings{padding:0 20px 20px}}
 @media(max-width:680px){.studio-layout{display:flex;padding:25px 16px}.preview-column{position:static;margin:0 auto;max-width:360px;width:100%}.preview-column iframe{height:580px}.studio-header{padding:16px 20px}.size-grid{grid-template-columns:1fr}.heading h1{font-size:calc(28px * var(--text-scale,1) * var(--titleScale,1))}.heart-inscription{font-size:calc(14px * var(--text-scale,1) * var(--heartScale,1))}.heading .galaxy-wish{font-size:calc(17px * var(--text-scale,1) * var(--wishScale,1))}.letter-journey .letter p{font-size:calc(19px * var(--text-scale,1) * var(--letterScale,1))}}
+
+/* Floral stationery: folded blush envelope, wax seal and botanical writing paper. */
+.letter-journey{width:min(530px,87vw);max-height:82dvh}
+.letter-journey .envelope-scene{padding:0;perspective:1400px}
+.letter-journey .envelope{height:auto;aspect-ratio:1.5;background:linear-gradient(120deg,#f5d5df,#edc5d3);border:1px solid #e6b6c9;border-radius:1px;isolation:isolate}
+.letter-journey .envelope:before{background:linear-gradient(34deg,#f3d1dd 49%,transparent 49.3%),linear-gradient(-34deg,#edc3d3 49%,transparent 49.3%);opacity:.85}
+.letter-journey .envelope:after{content:none}
+.letter-journey .envelope-flap{background:linear-gradient(160deg,#fae0e8,#edc6d6);clip-path:polygon(0 0,100% 0,97% 15%,50% 64%,3% 15%);filter:drop-shadow(0 1px 1px #aa708c);transition:transform .85s;backface-visibility:hidden}
+.letter-journey .envelope-label{top:11%;left:14%;width:72%;font:500 18px var(--gift-font);letter-spacing:1.6px;color:#916276}
+.envelope-date{position:absolute;top:27%;left:15%;width:70%;z-index:4;font:italic 45px var(--gift-font);color:#a4617d;letter-spacing:1px}
+.envelope-caption{position:absolute;top:45%;left:17%;width:66%;z-index:4;font:16px var(--gift-font);color:#976779}
+.letter-journey .envelope-seal{top:62%;left:calc(50% - 33px);width:66px;height:66px;border:5px double #c37a95;border-radius:46% 54% 48% 52%;font:italic 30px Georgia;background:radial-gradient(circle at 35% 25%,#e5a3b7,#ba617f 65%,#a75270);color:#f3bccb;box-shadow:inset 2px 3px 5px #ffdce975,inset -3px -3px 5px #823b5b70,0 4px 5px #91516c55;text-shadow:0 1px 1px #743248}
+.letter-floral{position:absolute;pointer-events:none;object-fit:contain!important;filter:none!important;width:43%;height:auto;z-index:5;opacity:.95}
+.envelope .floral-one{left:-1%;bottom:-1%;transform:rotate(-90deg)}
+.envelope .floral-two{right:-2%;top:-2%;width:29%;transform:rotate(90deg)}
+.letter-journey .letter{min-height:min(580px,73dvh);max-height:76dvh;padding:78px 38px 45px;background:radial-gradient(ellipse at 70% 60%,#fff8ef,#fff0ed);border:1px solid #f4d4d9;border-radius:1px;z-index:4;box-shadow:0 12px 35px #69324935;scrollbar-gutter:stable}
+.letter-journey .letter:before{content:none}
+.letter .floral-one{top:0;left:0;width:29%}
+.letter .floral-two{right:0;bottom:0;width:40%;transform:rotate(180deg)}
+.letter-journey .letter h2{position:relative;z-index:6;font:italic 34px/1.3 var(--gift-font);color:#a2677c;margin:0 0 25px}
+.letter-journey .letter p{position:relative;z-index:6;font-style:italic;line-height:1.75;color:#765b62}
+.letter-journey .letter .signature{clear:none;text-align:left;font-size:calc(20px * var(--letterScale,1));max-width:65%;margin:24px 0 0}
+.letter-journey .letter-portrait{float:right;width:115px;height:150px;object-fit:cover;border:0;box-shadow:none;transform:none;margin:5px -8px 12px 20px;position:relative;z-index:5;mask-image:linear-gradient(#000 75%,transparent)}
+.letter-journey.letter-unfolded .envelope-scene{position:absolute;inset:auto -12px -34px;opacity:1;transform:scale(.98);z-index:0;pointer-events:none}
+.letter-journey.letter-unfolded .envelope{visibility:visible;transform:none;opacity:1}
+.letter-journey.letter-unfolded .envelope-label,.letter-journey.letter-unfolded .envelope-date,.letter-journey.letter-unfolded .envelope-caption{visibility:hidden}
+.letter-journey.envelope-opening .envelope-label,.letter-journey.envelope-opening .envelope-date,.letter-journey.envelope-opening .envelope-caption{opacity:0;transition:opacity .3s}
+.letter-journey>.close{top:-45px;right:-7px;border:1px solid #edc6d535;border-radius:50%;background:#30203170;width:34px;height:34px;min-width:34px;min-height:34px;font-size:23px}
+@media(max-width:680px){.letter-journey .envelope{height:auto;aspect-ratio:1.45}.letter-journey .envelope-label{font-size:15px}.envelope-date{font-size:34px}.envelope-caption{font-size:13px}.letter-journey .envelope-seal{width:48px;height:48px;left:calc(50% - 24px);font-size:24px;border-width:4px}.letter-journey .letter{padding:60px 25px 35px}.letter-journey .letter h2{font-size:28px}.letter-journey .letter-portrait{width:85px;height:120px}}
+
+.envelope .floral-one{width:35%}
+.letter-journey .letter{padding-top:108px;padding-bottom:20px}
+.letter .floral-one{width:20%}
+.letter .floral-two{position:relative;display:block;width:35%;height:auto;margin:-8px -20px -18px auto;right:auto;bottom:auto;clear:both}
+.letter-journey .letter h2{font-size:30px}
+.letter-journey .letter p{line-height:1.65}
+@media(max-width:680px){.letter-journey .letter{padding-top:82px}.letter-journey .letter h2{font-size:26px}}
