@@ -2,6 +2,8 @@
 
 Website quà tặng 20/10 bằng tiếng Việt: bó hoa ảnh tương tác, ngân hà 3D với trái tim sao đỏ và một lá thư riêng. Có trang cấu hình tông hồng kem, khung điện thoại xem trước và chức năng xuất món quà thành một tệp HTML.
 
+Bản quà đã cá nhân hóa từ tệp xuất: [Quà cho vì sao sáng nhất](https://hungle2910.github.io/tinh-ha-yeu-thuong/qua-cho-vi-sao-sang-nhat.html). Trang cấu hình vẫn ở [config.html](https://hungle2910.github.io/tinh-ha-yeu-thuong/config.html). Khi xuất bản quà mới, cần thay `public/qua-cho-vi-sao-sang-nhat.html` rồi đẩy lên GitHub để cập nhật đường dẫn quà.
+
 ## Trải nghiệm người nhận
 
 1. Mở trang: bó hoa xuất hiện giữa nền sao vàng–trắng lấp lánh và bướm.
